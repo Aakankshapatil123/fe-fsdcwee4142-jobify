@@ -1,18 +1,54 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { ToastContainer } from "react-toastify";
-import Home from "../pages/Home";
+import Home from "./pages/Home";
+import JobDetails from "./pages/JobDetails";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import UserDashboard from "./pages/UserDashboard";
+import AdminDashboard from "./pages/AdminDashboard";
+import RecruiterDashboard from "./pages/RecruiterDashboard";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />
-  }
+  },
+  {
+    path: '/job/:jobId',
+    element: <JobDetails />
+  },
+   {
+    path: '/login',
+    element: <Login />
+  },
+  {
+    path: '/register',
+    element: <Register />
+  },
+  {
+    path: '/dashboard',
+    element: <UserDashboard />
+  },
+  {
+    path: '/admin/dashboard',
+    element: <AdminDashboard />
+  },
+  {
+    path: '/recruiter/dashboard',
+    element: <RecruiterDashboard />
+  },  
+
+
 ])
 
 const App = () => {
   return (
    <>
+   <Provider store={store}>
     <RouterProvider router={router}/>
+    </Provider>
     <ToastContainer
     position="top-right"
     autoClose={3000}
