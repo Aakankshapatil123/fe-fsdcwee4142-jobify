@@ -9,15 +9,31 @@ import AdminDashboard from "./pages/AdminDashboard";
 import RecruiterDashboard from "./pages/RecruiterDashboard";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import authLoader from "./loaders/authLoader";
+import { adminLoader, recruiterLoader, userLoader } from "./loaders/roleLoaders";
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />
+    element: <Home />,
+    loader: authLoader,
+    hydrateFallbackElement: <div
+    className="flex items-center justify-center min-hscreen"
+    >
+      <div className="animate-spin rounded-full h-32 w-32 boder-b-2 border-gray-900"
+      ></div>
+    </div>
   },
   {
     path: '/job/:jobId',
-    element: <JobDetails />
+    element: <JobDetails />,
+     loader: authLoader,
+    hydrateFallbackElement: <div
+    className="flex items-center justify-center min-hscreen"
+    >
+      <div className="animate-spin rounded-full h-32 w-32 boder-b-2 border-gray-900"
+      ></div>
+    </div>
   },
    {
     path: '/login',
@@ -29,15 +45,36 @@ const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <UserDashboard />
+    element: <UserDashboard />,
+     loader: userLoader,
+    hydrateFallbackElement: <div
+    className="flex items-center justify-center min-hscreen"
+    >
+      <div className="animate-spin rounded-full h-32 w-32 boder-b-2 border-gray-900"
+      ></div>
+    </div>
   },
   {
     path: '/admin/dashboard',
-    element: <AdminDashboard />
+    element: <AdminDashboard />,
+     loader: adminLoader,
+    hydrateFallbackElement: <div
+    className="flex items-center justify-center min-hscreen"
+    >
+      <div className="animate-spin rounded-full h-32 w-32 boder-b-2 border-gray-900"
+      ></div>
+    </div>
   },
   {
     path: '/recruiter/dashboard',
-    element: <RecruiterDashboard />
+    element: <RecruiterDashboard />,
+     loader: recruiterLoader,
+    hydrateFallbackElement: <div
+    className="flex items-center justify-center min-hscreen"
+    >
+      <div className="animate-spin rounded-full h-32 w-32 boder-b-2 border-gray-900"
+      ></div>
+    </div>
   },  
 
 

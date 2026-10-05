@@ -1,8 +1,9 @@
 import instance from "../instances/instance"
 import protectedInstance from '../instances/protectedInstance';
 
+
 export const registerUser = async (userData) => {
-    const response = await protectedInstance.post('/auth/register', userData);
+    const response = await instance.post('/auth/register', userData);
     return response.data;
 }
 
@@ -12,7 +13,7 @@ export const loginUser = async (credentials) => {
 };
 
 export const getMe = async () => {
-    const response = await protectedInstance.get('/auth/getMe');
+    const response = await protectedInstance.get('/auth/me');
     return response.data;
 };
 
