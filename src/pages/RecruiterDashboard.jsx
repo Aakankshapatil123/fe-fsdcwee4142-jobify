@@ -106,15 +106,29 @@ const RecruiterDashboard = () => {
         }
     };
 
+    // const fetchJobApplications = async (jobId) => {
+    //     try {
+    //         const response = await getJobApplications(jobId);
+    //         setSelectedJobApplications(response.applications || []);
+    //         setShowApplicationsSection(true);
+    //     } catch (error) {
+    //         toast.error('Failed to fetch applications.');
+    //     }
+    // };
+
     const fetchJobApplications = async (jobId) => {
-        try {
-            const response = await getJobApplications(jobId);
-            setSelectedJobApplications(response.applications || []);
-            setShowApplicationsSection(true);
-        } catch (error) {
-            toast.error('Failed to fetch applications.');
-        }
-    };
+    try {
+        const response = await getJobApplications(jobId);
+        
+        // 💡 दुरुस्ती: बॅकएंडकडून डेटा 'result' किंवा 'applications' कशामध्येही आला, तरी फ्रंटएंड तो अचूकपणे पकडेल!
+        const actualApplications = response.application ||response.applications || response.result || response.data || response;
+        
+        setSelectedJobApplications(Array.isArray(actualApplications) ? actualApplications : []);
+        setShowApplicationsSection(true);
+    } catch (error) {
+        toast.error('Failed to fetch applications.');
+    }
+};
 
     const handleUpdateApplicationStatus = async (applicationId, status) => {
         try {
@@ -166,10 +180,16 @@ const RecruiterDashboard = () => {
             <div className="container mx-auto px-4 py-8">
                 <h1 className="text-3xl font-bold text-gray-800 mb-8">Recruiter Dashboard</h1>
 
-                {user.assignedCompany && (
+                {user?.assignedCompany && (
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
                         <h2 className="text-lg font-semibold text-blue-800">
-                            {user.assignedCompany.name}
+                            {/* {user.assignedCompany.name}
+                             */}
+                             {/* {typeof user.assignedCompany === 'object' && user.assignedCompany.name : "Company Profile Active"} */}
+
+                              {typeof user.assignedCompany === 'object' && user.assignedCompany !== null 
+                ? user.assignedCompany.name 
+                : "Company Profile Active"}
                         </h2>
                     </div>
                 )}
@@ -322,8 +342,8 @@ const RecruiterDashboard = () => {
                                         <div key={application._id} className="border rounded-lg p-4">
                                             <div className="flex justify-between items-start mb-2">
                                                 <div>
-                                                    <h4 className="font-semibold">{application.applicant.name}</h4>
-                                                    <p className="text-sm text-gray-600">{application.applicant.email}</p>
+                                                    <h4 className="font-semibold">{application.applicant.name || "Anonymous candidate"}</h4>
+                                                    <p className="text-sm text-gray-600">{application.applicant.email || "N/A"}</p>
                                                 </div>
                                                 <div className="flex gap-2">
                                                     <select
@@ -420,6 +440,10 @@ const RecruiterDashboard = () => {
 }
 
 export default RecruiterDashboard;
+
+
+
+
 
 
 
