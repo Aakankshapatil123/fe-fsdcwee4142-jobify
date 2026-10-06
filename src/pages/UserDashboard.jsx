@@ -142,14 +142,17 @@ const UserDashboard = () => {
             >
               Browse Jobs
             </button>
+
             <button
-              onClick={() => window.open("/profile", "_blank")}
+              onClick={() => navigate("/profile/update")}
               className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition duration-200"
             >
               Update Profile
             </button>
+            
+
             <button
-              onClick={() => window.open("/resume", "_blank")}
+              onClick={() => navigate("/resume")}
               className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition duration-200"
             >
               Upload Resume
@@ -226,18 +229,10 @@ const UserDashboard = () => {
                           </div>
                         </div>
                       </td>
-                      {/* <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className="text-sm font-medium text-gray-900">
-                                                    {application.job?.company[0]?.name || 'Company Unavailable'}
-                                                </div>
-                                                <div className="text-sm text-gray-500">
-                                                    {application.job?.company?.industry || ''}
-                                                </div>
-                                            </td> */}
+                      
 
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm font-medium text-gray-900">
-                         
                           {application.job?.company
                             ? typeof application.job.company === "object"
                               ? application.job.company.name ||

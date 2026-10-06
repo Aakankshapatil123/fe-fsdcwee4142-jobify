@@ -11,6 +11,10 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import authLoader from "./loaders/authLoader";
 import { adminLoader, recruiterLoader, userLoader } from "./loaders/roleLoaders";
+import UpdateProfile from "./pages/UpdateProfile";
+import UserProfile from "./pages/UserProfile";
+import Resume from "./pages/Resume";
+
 
 const router = createBrowserRouter([
   {
@@ -54,6 +58,20 @@ const router = createBrowserRouter([
       ></div>
     </div>
   },
+
+  {
+  path: "/profile",
+  element: < UserProfile/>
+},
+  {
+  path: "/profile/update",
+  element: <UpdateProfile />
+},
+
+{
+  path: "/resume",
+  element: <Resume />
+},
   {
     path: '/admin/dashboard',
     element: <AdminDashboard />,

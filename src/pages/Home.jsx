@@ -1,14 +1,3 @@
-// const Home = () => {
-//   return (
-//     <div>
-//       Home
-//     </div>
-//   )
-// }
-
-// export default Home
-
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import Navbar from "../components/Navbar";

@@ -20,8 +20,16 @@ export const deleteCompany = async (id) => {
     return response.data;
 };
 
+
+
 export const createRecruiter = async (recruiterData) => {
-    const response = await protectedInstance.post('/companies/recruiters', recruiterData);
+    const { companyId, ...data } = recruiterData;
+
+    const response = await protectedInstance.post(
+        `/companies/${companyId}/recruiter`,
+        data
+    );
+
     return response.data;
 };
 
